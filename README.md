@@ -41,13 +41,15 @@ Prerequisites:
 
 modules:
  * [apt](https://docs.ansible.com/ansible/2.9/modules/apt_module.html#apt-module)
+ * [ping](https://docs.ansible.com/ansible/2.9/modules/ping_module.html#ping-module)
+
+first test if servers are reachable
+```
+$ ansible all -m ping -i inventory.ini
+```
 
 ```
-ansible all -m ping -i inventory.ini
-```
-
-```
-ansible-playbook -i inventory.ini playbook.yml
+$ ansible-playbook -i inventory.ini playbook.yml
 ```
 
 ### 02 - install git
@@ -56,7 +58,7 @@ modules:
  * [apt](https://docs.ansible.com/ansible/2.9/modules/apt_module.html#apt-module)
 
 ```
-ansible-playbook -i inventory.ini playbook.yml
+$ ansible-playbook -i inventory.ini playbook.yml
 ```
 output:
 ```
@@ -87,5 +89,5 @@ modules:
  * [service](https://docs.ansible.com/ansible/2.9/modules/service_module.html#service-module)
 
 ```
-ansible-playbook -i inventory.ini playbook.yml
+$ ansible-playbook -i inventory.ini playbook.yml
 ```
