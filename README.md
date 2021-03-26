@@ -39,6 +39,9 @@ Prerequisites:
 
 ### 01 - update system packages
 
+modules:
+ * [apt](https://docs.ansible.com/ansible/2.9/modules/apt_module.html#apt-module)
+
 ```
 ansible all -m ping -i inventory.ini
 ```
@@ -48,6 +51,9 @@ ansible-playbook -i inventory.ini playbook.yml
 ```
 
 ### 02 - install git
+
+modules:
+ * [apt](https://docs.ansible.com/ansible/2.9/modules/apt_module.html#apt-module)
 
 ```
 ansible-playbook -i inventory.ini playbook.yml
@@ -73,3 +79,13 @@ server1                    : ok=2    changed=1    unreachable=0    failed=0    s
 server2                    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
+### 03 - install and configure docker
+
+modules:
+ * [apt](https://docs.ansible.com/ansible/2.9/modules/apt_module.html#apt-module)
+ * [shell](https://docs.ansible.com/ansible/2.9/modules/shell_module.html#shell-module)
+ * [service](https://docs.ansible.com/ansible/2.9/modules/service_module.html#service-module)
+
+```
+ansible-playbook -i inventory.ini playbook.yml
+```
