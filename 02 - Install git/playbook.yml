@@ -1,5 +1,5 @@
 ---
-- name: Update system packages
+- name: Install git
   hosts: all
   become: yes
   tasks:
