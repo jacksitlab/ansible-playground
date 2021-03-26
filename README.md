@@ -91,3 +91,15 @@ modules:
 ```
 $ ansible-playbook -i inventory.ini playbook.yml
 ```
+
+
+### 04 - run web server with docker-compose
+
+modules:
+  * [copy](https://docs.ansible.com/ansible/2.9/modules/copy_module.html#copy-module)
+  * [docker_compose](https://docs.ansible.com/ansible/2.9/modules/docker_compose_module.html#docker-compose-module)
+  * [stat](https://docs.ansible.com/ansible/2.9/modules/stat_module.html#stat-module)
+
+```
+$ ansible-playbook -i inventory.ini playbook.yml
+```

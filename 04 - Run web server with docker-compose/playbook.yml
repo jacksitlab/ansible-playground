@@ -1,0 +1,34 @@
+---
+- name: deploy http server within a docker container
+  hosts: all
+  vars:
+    dstFolder: "/home/{{ansible_user}}/docker/http/"
+  become: no
+  tasks:
+    - name: Check that the somefile.conf exists
+      stat:
+        path: "{{dstFolder}}/docker-compose.yml"
+      register: stat_result
+
+    - name: Stop container if started
+      docker_compose:
+        project_src: "{{dstFolder}}"
+        files: docker-compose.yml
+        state: absent
+      when: stat_result.stat.exists
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: "{{ playbook_dir }}/files/docker-compose.yml"
+        dest: "{{dstFolder}}"
+
+    - name: Copy html
+      copy:
+        src: "{{ playbook_dir }}/files/index.html"
+        dest: "{{dstFolder}}/public_html/"
+
+    - name: Start container
+      docker_compose:
+        project_src: "{{dstFolder}}"
+        files: docker-compose.yml
+        state: present
