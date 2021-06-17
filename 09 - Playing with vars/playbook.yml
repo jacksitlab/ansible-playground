@@ -1,0 +1,33 @@
+---
+
+- name: playing with vars
+  hosts: localhost
+  gather_facts: true
+  become: no
+  vars:
+    a: 5
+  tasks:
+    - name: reading things from shell to var
+      shell: "echo $(date +%j)"
+      register: doyoutput
+    - name: reading things from shell to var2
+      shell: "echo $(( $(date +%s) / 86400 ))"
+      register: doyoutput2
+      
+    - name: save var
+      set_fact:
+        day_of_year: "{{ doyoutput.stdout }}"
+        day_since_1970: "{{ doyoutput2.stdout }}"
+    - name: output
+      debug:
+        msg: "day of year = {{day_of_year}}. day since 1970 = {{day_since_1970}}"
+    - name: calculating with vars
+      set_fact:
+        doy_mod_a: "{{day_of_year|int % a }}"
+        doy2_mod_a: "{{day_since_1970|int % a }}"
+        
+    - name: output2
+      debug:
+        msg: "day of year mod {{a}} = {{doy_mod_a}}. day since 1970 mod {{a}} = {{doy2_mod_a}}"
+        
+        
